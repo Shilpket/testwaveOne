@@ -27,7 +27,7 @@ public class   Users {
         driver = new ChromeDriver();
         driver.get("http://www.testwave.qabidder.net");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//        faker = new Faker();
+        faker = new Faker();
         login = new LoginPage(driver);
         usersPage = new UsersPage(driver);
         driver.manage().window().maximize();
@@ -44,7 +44,8 @@ public class   Users {
         driver.findElement(usersPage.getInviteUser()).click();
 
         //emailField.clear();
-        driver.findElement(By.id("emailField")).sendKeys(faker.internet().emailAddress());
+//        driver.findElement(By.id("emailField")).sendKeys(faker.internet().emailAddress());
+        usersPage.emailField1().sendKeys(faker.internet().emailAddress());
         driver.findElement(By.id("sendInvite")).click();
     }
 

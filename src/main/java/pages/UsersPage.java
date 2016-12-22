@@ -22,6 +22,10 @@ public class UsersPage {
     By resendInvitation = By.xpath(".//*[@div[3]/div/div/table/tbody/tr[1]/td[2]/button[3]]"); // resend invite btn
     By deleteUser = By.xpath(".//*[@div[3]/div/div/table/tbody/tr[1]/td[2]/button[4]"); // delete user btn
 
+    public WebElement emailField1() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/div/input"));
+    }
+
     public By getInviteUser() {
         return inviteUser;
     }
