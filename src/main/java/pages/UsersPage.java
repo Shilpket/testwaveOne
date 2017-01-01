@@ -10,47 +10,63 @@ import org.openqa.selenium.support.FindBy;
  */
 public class UsersPage {
     WebDriver driver;
+    WebElement element;
+    public String UserEmailID;
 
     public UsersPage(WebDriver driver) {
-        this.driver = driver;}
+        this.driver = driver;
+    }
 
-    By inviteUser = By.className("pull-right btn btn-info btn-sm"); // invite user btn
-    By emailField = By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/div/input"); // email field on invite user btn
-    By sendInvite = By.className("btn btn-primary mr"); // send invite btn - submit email
-    By cancel = By.className("btn btn-default"); // cancel btn on invite user field
-    By assignPermission = By.xpath(".//*[@div[3]/div/div/table/tbody/tr[1]/td[2]/button[1]]"); // permission btn
-    By resendInvitation = By.xpath(".//*[@div[3]/div/div/table/tbody/tr[1]/td[2]/button[3]]"); // resend invite btn
-    By deleteUser = By.xpath(".//*[@div[3]/div/div/table/tbody/tr[1]/td[2]/button[4]"); // delete user btn
+    public String getUserEmailID() { driver.findElement(By.xpath("//div[text()]"));
+        return UserEmailID;
+    } // location for useremail ID in the table
 
-    public WebElement emailField1() {
+    public WebElement emailField() {
         return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/div/input"));
+    } // for invite users TC DO NOT DELETE
+
+    // method did not work
+    /*public WebElement InviteUser(){driver.findElement(By.xpath("html/body/div[2]/section/div/div/h3/button")); return element;} // invite user btn*/
+    public WebElement InviteUser() {
+        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/h3/button"));
     }
 
-    public By getInviteUser() {
-        return inviteUser;
-    }
-//
-    public By getEmailField() {
-        return emailField;
-    }
+    public WebElement SendInvite() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/button[1]"));
+    } // send invite btn
 
-    public By getSendInvite() {
-        return sendInvite;
-    }
+    public WebElement Cancel() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/button[2]"));
+    }//cancel btn on invite user field--need to learn to choose from multiple users.. this code will work with first user only
 
-    public By getCancel() {
-        return cancel;
-    }
+    public WebElement AssignPermission(String strusername) {
+        return driver.findElement(By.xpath("//div[3]/table/tbody/tr/td[2]/button[1]"));
+    } // assign permission btn-- need to learn to choose from multiple users.. this code will work with first user only
 
-    public By getAssignPermission() {
-        return assignPermission;
-    }
+    public WebElement ResendInvitation(){
+        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/div[3]/div/div/table/tbody/tr[1]/td[2]/button[3]"));
+    } // resend invitation to the same user -- need to learn to choose from multiple users.. this code will work with first user only
 
-    public By getResendInvitation() {
-        return resendInvitation;
-    }
+    public WebElement DeleteUser() {
+        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/div[3]/div/div/table/tbody/tr[1]/td[2]/button[4]"));
+    } // delete user btn --need to learn to choose from multiple users.. this code will work with first user only
 
-    public By getDeleteUser() {
-        return deleteUser;
-    }
+    public WebElement SelectRole() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog5']/div[2]/div[1]/div/table/tbody/tr/td[2]/select"));
+    } // select role dropdown -- need to learn to choose from multiple users.. this code will work with first user only
+
+    public WebElement SaveBtn() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/div/table/tbody/tr/td[3]/button[1]"));
+    } // save the role selection --need to learn to choose from multiple users.. this code will work with first user only
+
+    public WebElement DeleteRole() {
+        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/div/table/tbody/tr/td[3]/button[2]"));
+    } // delete the role selection-- need to learn to choose from multiple users.. this code will work with first user only
+
+
+    public WebElement UserEmailID(String strUsername){return driver.findElement(By.xpath("//div[3]//table/tbody/tr/td[1]//a"));}
+                // email id under the table on userpage Unique ID without any row specification
+
+
+
 }
