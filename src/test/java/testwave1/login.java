@@ -1,4 +1,4 @@
-package Testwave1;
+package testwave1;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by shilp on 12/21/2016.
  */
-        public class Login {
+        public class login {
     WebDriver driver;
     Faker faker;
 
@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
     @Test
     public void Login(String s, String s1){
-        driver.findElement(By.id("username")).sendKeys("bongo@mailinator.com");
+        driver.findElement(By.id("username")).sendKeys("mask@mailinator.com");
         driver.findElement(By.id("password")).sendKeys("123456");
         driver.findElement(By.id("loginBtn")).click();
 
