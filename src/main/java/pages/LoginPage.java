@@ -9,28 +9,26 @@ import org.openqa.selenium.WebElement;
  */
 public class LoginPage {
     WebDriver driver;
-    LoginPage loginPage;
+
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
     }
-    By username = By.id("exampleInputEmail1");
-    By password = By.id("exampleInputPassword1");
-    By loginBtn = By.xpath("html/body/div[2]/div/div/div[1]/div[2]/form/button");
-    By register = By.className("btn btn-block btn-default");
-    By forgotPassword = By.className("text-muted");
-    By titleText = By.className("ng-binding");
 
-  //  public WebElement Username(){return driver.findElement(By.id("exampleInputEmail1"));}
+    public WebElement register(){return driver.findElement(By.className("btn btn-block btn-default"));}
+    public WebElement forgotPassword(){return driver.findElement(By.xpath("//form/div[3]/div/a"));}
+
+    public WebElement username(String strUsername){return driver.findElement(By.id("exampleInputEmail1"));}
+    public WebElement password(String strPassword){return driver.findElement(By.id("exampleInputPassword1"));}
+    public WebElement loginBtn(){return driver.findElement(By.xpath("//form/button"));}
 
 
-    public void Login(String strUsername, String strPassword) throws InterruptedException {
-        driver.findElement(username).sendKeys(strUsername);
-        driver.findElement(password).sendKeys(strPassword);
+    public void Login(String s, String s1) throws InterruptedException {
+        username("mask@mailinator.com");
+        password("123456");
         Thread.sleep(2000);
-        driver.findElement(loginBtn).click();
+        loginBtn().click();
     }
-
 
 
 }
