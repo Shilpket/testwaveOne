@@ -5,68 +5,111 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 /**
  * Created by shilp on 12/16/2016.
  */
 public class UsersPage {
     WebDriver driver;
-    WebElement element;
-    public String UserEmailID;
-
     public UsersPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public String getUserEmailID() { driver.findElement(By.xpath("//div[text()]"));
-        return UserEmailID;
-    } // location for useremail ID in the table
 
-    public WebElement emailField() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/div/input"));
-    } // for invite users TC DO NOT DELETE
+    public WebElement InviteUserBtn() {
+        return driver.findElement(By.xpath("//h3/button"));
+    }// Btn on Users page
+
+    public WebElement InviteUsersEmailField() {
+        return driver.findElement(By.xpath("//form/div/input"));} // for invite users TC DO NOT DELETE -- field is on invite users btn
+
+
+    public WebElement SendInviteBtn() {return driver.findElement(By.xpath("//form/button[1]"));} // send invite btn on invite user btn
+
+    public WebElement CancelBtn() {return driver.findElement(By.xpath("//form/button[2]"));}//on invite user btn to cancel the invitation
+
+    public WebElement SelectRole() {
+        return driver.findElement(By.xpath("//td[2]/select"));
+    } // select role dropdown
+
+    public WebElement SaveBtn() {return driver.findElement(By.xpath("//tr/td[3]/button[1]"));} // save the role selection
+
+    public WebElement DeleteRole() {return driver.findElement(By.xpath("//td[3]/button[2]"));} // delete the role selection
+
+    // buttons to click on are separate from methods. Methods don't click on anything
+    public WebElement DeleteBtn(){return driver.findElement(By.xpath("//tr[3]/td[2]/button[4]"));}// btn to click on DeleteUser
+
+    public WebElement ResendBtn(){return driver.findElement(By.xpath("//td[2]/button[3]"));} // resend invitation btn to click on
+
+    public WebElement ConfirmDelete(){return driver.findElement(By.xpath(".//*[@class='btn btn-danger mr'][text()='Delete']"));}//delete user
+
+    public WebElement CancelDelete(){return driver.findElement(By.xpath("//*[@id=ngdialog1]/div[2]/div/button[2]"));}//delete user pop up
+
+
+
+    public WebElement NextPageBtn(){return driver.findElement(By.xpath("//dir-pagination-controls/ul/li[4]/a"));} // Next page arrow btn
+
+
+    // Method. Will need the btn above in TC
+    public WebElement AssignPermissionBtn(String Username) throws InterruptedException {
+
+            do {
+                List<WebElement> allRows = driver.findElements(By.tagName("tr"));
+                for (WebElement cells: allRows) {
+
+                    if (cells.getText().contains(Username)) {
+                        return cells;
+                    }
+                }
+                NextPageBtn().click();
+                Thread.sleep(5000);
+            } while (NextPageBtn().isEnabled());
+
+        return null;
+    }
+
+    // Method. Will need above btn in TC
+    public WebElement ResendInvitationBtn(String Username) throws InterruptedException {
+
+        do {
+            List<WebElement> rows= driver.findElements(By.tagName("tr"));
+             for (WebElement cells : rows) {
+
+                if (cells.getText().contains(Username)) {
+                    return cells;
+                }
+            }
+            NextPageBtn().click();
+            Thread.sleep(5000);
+        }
+        while (NextPageBtn().isEnabled()) ;
+
+        return null;
+    }// resend invitation to the same user
+
+
+    // Method. Will need above btn in TC
+    public WebElement DeleteUserBtn(String Username) throws InterruptedException {
+
+        do {
+            List<WebElement> rows = driver.findElements(By.tagName("tr"));
+            for (WebElement cells: rows){
+
+                if (cells.getText().contains(Username)){
+                    return cells;
+
+                }
+            }
+            NextPageBtn().click();
+            Thread.sleep(5000);
+        } while (NextPageBtn().isEnabled());
+        return null;
+    }
+
 
     // method did not work
     /*public WebElement InviteUser(){driver.findElement(By.xpath("html/body/div[2]/section/div/div/h3/button")); return element;} // invite user btn*/
-    public WebElement InviteUser() {
-        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/h3/button"));
-    }
-
-    public WebElement SendInvite() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/button[1]"));
-    } // send invite btn
-
-    public WebElement Cancel() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/form/button[2]"));
-    }//cancel btn on invite user field--need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement AssignPermission(String strusername) {
-        return driver.findElement(By.xpath("//div[3]/table/tbody/tr/td[2]/button[1]"));
-    } // assign permission btn-- need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement ResendInvitation(){
-        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/div[3]/div/div/table/tbody/tr[1]/td[2]/button[3]"));
-    } // resend invitation to the same user -- need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement DeleteUser() {
-        return driver.findElement(By.xpath("html/body/div[2]/section/div/div/div[3]/div/div/table/tbody/tr[1]/td[2]/button[4]"));
-    } // delete user btn --need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement SelectRole() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog5']/div[2]/div[1]/div/table/tbody/tr/td[2]/select"));
-    } // select role dropdown -- need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement SaveBtn() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/div/table/tbody/tr/td[3]/button[1]"));
-    } // save the role selection --need to learn to choose from multiple users.. this code will work with first user only
-
-    public WebElement DeleteRole() {
-        return driver.findElement(By.xpath(".//*[@id='ngdialog1']/div[2]/div[1]/div/table/tbody/tr/td[3]/button[2]"));
-    } // delete the role selection-- need to learn to choose from multiple users.. this code will work with first user only
-
-
-    public WebElement UserEmailID(String strUsername){return driver.findElement(By.xpath("//div[3]//table/tbody/tr/td[1]//a"));}
-                // email id under the table on userpage Unique ID without any row specification
-
 
 
 }

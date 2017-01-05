@@ -18,15 +18,15 @@ public class LoginPage {
     public WebElement register(){return driver.findElement(By.className("btn btn-block btn-default"));}
     public WebElement forgotPassword(){return driver.findElement(By.xpath("//form/div[3]/div/a"));}
 
-    public WebElement username(String strUsername){return driver.findElement(By.id("exampleInputEmail1"));}
-    public WebElement password(String strPassword){return driver.findElement(By.id("exampleInputPassword1"));}
+    public WebElement username(){return driver.findElement(By.id("exampleInputEmail1"));}
+    public WebElement password(){return driver.findElement(By.id("exampleInputPassword1"));}
     public WebElement loginBtn(){return driver.findElement(By.xpath("//form/button"));}
 
 
     public void Login(String s, String s1) throws InterruptedException {
-        username("mask@mailinator.com");
-        password("123456");
-        Thread.sleep(2000);
+        username().sendKeys(s);
+        password().sendKeys(s1);
+        Thread.sleep(3000);
         loginBtn().click();
     }
 

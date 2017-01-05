@@ -16,16 +16,16 @@ public class NaveBarPage {
             this.driver = driver;
         }
 
-        public WebElement Entities(){element=driver.findElement(By.xpath(".//*[@nav/ul/li[2]/a/span"));
+        public WebElement Entities(){element=driver.findElement(By.xpath("//*/ul/li[2]/a"));
         return element;}
 
-        public WebElement Users(){element= driver.findElement(By.xpath(".//*[@nav/ul/li[3]/a/span]"));
+        public WebElement Users(){element= driver.findElement(By.xpath("/html/body/div[2]/aside[1]/div/nav/ul/li[3]"));
         return element;}
 
-        public WebElement AddReport(){element= driver.findElement(By.xpath(".//*[@nav/ul/li[4]/a/span]"));
+        public WebElement AddReport(){element= driver.findElement(By.xpath("//*/ul/li[4]/a"));
         return element;}
 
-        public WebElement Reports(){element= driver.findElement(By.xpath(".//*[@nav/ul/li[5]/a/span]"));
+        public WebElement Reports(){element= driver.findElement(By.xpath("//*/ul/li[5]/a"));
         return element;}
 
    /*      public By Users(){ driver.findElement(By.xpath(".//*[@nav/ul/li[3]/a/span]"));
