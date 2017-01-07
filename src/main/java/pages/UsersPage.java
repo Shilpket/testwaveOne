@@ -38,7 +38,7 @@ public class UsersPage {
     public WebElement DeleteRole() {return driver.findElement(By.xpath("//td[3]/button[2]"));} // delete the role selection
 
     // buttons to click on are separate from methods. Methods don't click on anything
-    public WebElement DeleteBtn(){return driver.findElement(By.xpath("//tr[3]/td[2]/button[4]"));}// btn to click on DeleteUser
+    public WebElement DeleteBtn(){return driver.findElement(By.xpath("//td[2]/button[4]"));}// btn to click on DeleteUser
 
     public WebElement ResendBtn(){return driver.findElement(By.xpath("//td[2]/button[3]"));} // resend invitation btn to click on
 
@@ -46,31 +46,30 @@ public class UsersPage {
 
     public WebElement CancelDelete(){return driver.findElement(By.xpath("//*[@id=ngdialog1]/div[2]/div/button[2]"));}//delete user pop up
 
-
+    public WebElement AssignBtn(){return driver.findElement(By.xpath("//td[2]/button[1]"));}// btn to click
 
     public WebElement NextPageBtn(){return driver.findElement(By.xpath("//dir-pagination-controls/ul/li[4]/a"));} // Next page arrow btn
 
 
     // Method. Will need the btn above in TC
-    public WebElement AssignPermissionBtn(String Username) throws InterruptedException {
+    public WebElement AssignPermission(String Username) throws InterruptedException {
 
             do {
                 List<WebElement> allRows = driver.findElements(By.tagName("tr"));
-                for (WebElement cells: allRows) {
+                for (WebElement cell: allRows) {
 
-                    if (cells.getText().contains(Username)) {
-                        return cells;
+                    if (cell.getText().contains(Username)) {
+                        return cell;
                     }
                 }
                 NextPageBtn().click();
                 Thread.sleep(5000);
             } while (NextPageBtn().isEnabled());
-
         return null;
     }
 
     // Method. Will need above btn in TC
-    public WebElement ResendInvitationBtn(String Username) throws InterruptedException {
+    public WebElement ResendInvitation(String Username) throws InterruptedException {
 
         do {
             List<WebElement> rows= driver.findElements(By.tagName("tr"));
@@ -90,7 +89,7 @@ public class UsersPage {
 
 
     // Method. Will need above btn in TC
-    public WebElement DeleteUserBtn(String Username) throws InterruptedException {
+    public WebElement DeleteUser(String Username) throws InterruptedException {
 
         do {
             List<WebElement> rows = driver.findElements(By.tagName("tr"));

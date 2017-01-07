@@ -24,16 +24,16 @@ import java.util.concurrent.TimeUnit;
 public class inviteUsers {
     WebDriver driver;
     Faker faker;
-    LoginPage login;
+    LoginPage loginPage;
     UsersPage usersPage;
     NaveBarPage naveBarPage;
 
     @BeforeClass
     public void setUp(){
         driver = new ChromeDriver();
-        driver.get("http://www.testwave.qabidder.net");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        loginPage = new LoginPage(driver);
         faker = new Faker();
-        login = new LoginPage(driver);
         usersPage = new UsersPage(driver);
         naveBarPage = new NaveBarPage(driver);
         driver.manage().window().maximize();
@@ -44,36 +44,30 @@ public class inviteUsers {
 //
 //    }
 
-    @Test(priority = 1)
+    @Test
     public void inviteUser() throws InterruptedException {
-        login.Login("mask@mailinator.com", "123456");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("http://www.testwave.qabidder.net");
+
+        loginPage.Login("mask@mailinator.com", "123456");
         Thread.sleep(5000);
         naveBarPage.Users().click(); // navebar users btn
-        usersPage.InviteUser().click(); // invite user btn
-        usersPage.emailField().clear();
-        usersPage.emailField().sendKeys(faker.internet().emailAddress());
-        usersPage.SendInvite().click();
+        usersPage.InviteUserBtn().click(); // invite user btn
+        usersPage.InviteUsersEmailField().clear();
+        usersPage.InviteUsersEmailField().sendKeys(faker.internet().emailAddress());
+        usersPage.SendInviteBtn().click();
 
-        for(int i=0; i<2; i++){ inviteUser();}
+        for(int i=0; i<=2; i++){
+            inviteUser();
+        }
+
     }
 
 
-
-    @Test(priority = 2, enabled = false)
-    public void resendInvitation(){
-        usersPage.ResendInvitation().click(); //// this code will execute for the first user only -- need to learn to choose from multiple users
-    }
-
-    @Test(priority = 3)
-
-    public void deleteUser(){
-        usersPage.DeleteUser().click(); // this code will execute for the first user only -- need to learn to choose from multiple users.
-    }
 
     @AfterClass
     public void breakdown() throws InterruptedException {
         driver.manage().deleteAllCookies();
+        Thread.sleep(3000);
         driver.quit();
 
     }
