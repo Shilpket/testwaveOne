@@ -23,21 +23,22 @@ public class addEntity {
 
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
         naveBarPage = new NaveBarPage(driver);
         entityPage = new EntityPage(driver);
         faker = new Faker();
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get("http://testwave.qabidder.net");
+        loginPage.Login("mask@mailinator.com", "123456");
+
     }
     @Test
     public void AddEntity() throws InterruptedException {
-        driver.get("http://testwave.qabidder.net");
-        loginPage.Login("mask@mailinator.com", "123456");
+        // clicking on Entities btn on navigation bar
         naveBarPage.Entities().click();
-
         entityPage.AddEntityBtn().click();
         entityPage.EntityName().sendKeys(faker.company().name());
         new Select(entityPage.CountryField()).selectByVisibleText("United States");
@@ -66,6 +67,8 @@ public class addEntity {
 //        Thread.sleep(3000);
 //        entityPage.NextStepBtn();
         entityPage.FinishBtn();
+
+        for (int i=0; i<=3;i++){AddEntity();}
     }
 
     @AfterTest
