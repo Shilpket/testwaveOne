@@ -14,7 +14,7 @@ import pages.LoginPage;
  * NO need for this TC. Login method is compiled in LoginPage
  */
   // @Deprecated
-        public class login {
+        public class Login {
     WebDriver driver;
     LoginPage loginPage;
 
@@ -38,7 +38,7 @@ import pages.LoginPage;
     public void Login() throws InterruptedException {
         driver.get("http://www.testwave.qabidder.net");
         Thread.sleep(3000);
-        loginPage.Login("mask@mailinator.com", "123456");
+        loginPage.Login("leela@mailinator.com", "123456");
     }
     @AfterClass
     public void breakdown() throws InterruptedException {

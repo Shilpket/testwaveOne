@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by shilp on 1/4/2017.
  */
-public class addEntity {
+public class AddEntity {
     WebDriver driver;
     LoginPage loginPage;
     EntityPage entityPage;
@@ -75,7 +75,7 @@ public class addEntity {
     public void breakdown() throws InterruptedException {
         driver.manage().deleteAllCookies();
         Thread.sleep(5000);
-        driver.quit();
+       // driver.quit();
     }
 }
 

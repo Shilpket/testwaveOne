@@ -15,7 +15,7 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public WebElement register(){return driver.findElement(By.className("btn btn-block btn-default"));}
+    public WebElement register(){return driver.findElement(By.xpath("//div[2]/a"));}
     public WebElement forgotPassword(){return driver.findElement(By.xpath("//form/div[3]/div/a"));}
 
     public WebElement username(){return driver.findElement(By.id("exampleInputEmail1"));}

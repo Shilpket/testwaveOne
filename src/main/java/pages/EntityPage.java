@@ -36,7 +36,7 @@ public class EntityPage {
 
     /*Below btn had ngdialog no which is different on each row. ngdialog1, ngdialog2 on each row
      So to dismiss an element not found error, we add text and mention it in the method "+text+"*/
-    public WebElement RUDoneBtn(int RUnumber){return driver.findElement(By.xpath("//*[@id=\"ngdialog"+RUnumber+"\"]/div[2]/div/button"));}
+    public WebElement RUDoneBtn(int i){return driver.findElement(By.xpath("//*[@class=\"btn btn-primary\"]/div[2]/div/button"));}
 
     public WebElement FinishBtn(){return driver.findElement(By.xpath("//section/div/div/div[2]/button[2]"));}
     public WebElement InviteAdminEmail(){return driver.findElement(By.xpath("//section//div[3]/form//input"));}
@@ -45,19 +45,24 @@ public class EntityPage {
     public WebElement AdminDoneBtn(int Adminumber){return driver.findElement(By.xpath("//*[@id=\"ngdialog"+Adminumber+"\"]/div[2]/div/button"));}
 
 
-    public WebElement DeleteEntityBtn(){return driver.findElement(By.xpath("//td[2]/button[4]"));}
+    public WebElement DeleteEntityBtn(){return driver.findElement(By.cssSelector(".fa.fa-trash"));}
     // Below btn has different ngdialog no., so we add a text and mention it as an integer in the method. When using loop, just i+1 in the method.
     public WebElement ConfirmDeleteEntityBtn(int deleteNumber){return driver.findElement(By.xpath("//*[@id=\"ngdialog"+deleteNumber+"\"]/div[2]/div/button[1]"));}
 
     // clean up the page
     public void DeleteAllEntities() throws InterruptedException {
-       // List<WebElement> rows = driver.findElements(By.tagName("tr")); // list of rows. can use this list as well.
-        List<WebElement> rows = new ArrayList<WebElement>(driver.findElements(By.cssSelector(".fa.fa-trash"))); // list of delete btns.
-        for (int i =0; i<rows.size();i++ ){
+        /*List<WebElement> rows1 = (driver.findElements(By.tagName("tr"))); // list of rows.
+        14 rows and 12 btns - used breakpoint at loop to find out so tr won't work easily. Btn logic is easy to use.*/
+
+        //  List<WebElement> btn = new ArrayList<WebElement>(driver.findElements(By.cssSelector(".fa.fa-trash"))); // array list of delete btns.
+        List<WebElement> btn = (driver.findElements(By.cssSelector(".fa.fa-trash"))); // list of btns works perfectly as well
+        for (int i =0; i<btn.size();i++ ){
             Thread.sleep(3000);
-            DeleteEntityBtn().click();
+            //DeleteEntityBtn().click(); does not work
+            btn.get(i).click();
             Thread.sleep(3000);
             ConfirmDeleteEntityBtn(i+1).click();
+
         }
 
 //        List<WebElement> list = new ArrayList<WebElement>(driver.findElements(By.cssSelector(".fa.fa-trash")));
@@ -66,11 +71,8 @@ public class EntityPage {
 //           Thread.sleep(2000);
 //            list.get(i).click();
 //            Thread.sleep(2000);
-//            ConfirmDeleteEntityBtn().click();
+//            ConfirmDeleteEntityBtn(i+1).click();
 //        }
     }
-
-
-
 
 }

@@ -29,29 +29,22 @@ public class UsersPage {
 
     public WebElement CancelBtn() {return driver.findElement(By.xpath("//form/button[2]"));}//on invite user btn to cancel the invitation
 
-    public WebElement SelectRole() {
-        return driver.findElement(By.xpath("//td[2]/select"));
-    } // select role dropdown
+    public WebElement SelectRole() {return driver.findElement(By.xpath("//td[2]/select"));} // select role dropdown
 
     public WebElement SaveBtn() {return driver.findElement(By.xpath("//tr/td[3]/button[1]"));} // save the role selection
 
     public WebElement DeleteRole() {return driver.findElement(By.xpath("//td[3]/button[2]"));} // delete the role selection
 
-    // buttons to click on are separate from methods. Methods don't click on anything
-    public WebElement DeleteBtn(){return driver.findElement(By.xpath("//td[2]/button[4]"));}// btn to click on DeleteUser
 
-    public WebElement ResendBtn(){return driver.findElement(By.xpath("//td[2]/button[3]"));} // resend invitation btn to click on
-
-    public WebElement ConfirmDelete(){return driver.findElement(By.xpath(".//*[@class='btn btn-danger mr'][text()='Delete']"));}//delete user
+    public WebElement ConfirmDelete(){return driver.findElement(By.xpath("//*[@class=\"btn btn-danger mr\"]"));}//confirm delete user
 
     public WebElement CancelDelete(){return driver.findElement(By.xpath("//*[@id=ngdialog1]/div[2]/div/button[2]"));}//delete user pop up
 
-    public WebElement AssignBtn(){return driver.findElement(By.xpath("//td[2]/button[1]"));}// btn to click
 
     public WebElement NextPageBtn(){return driver.findElement(By.xpath("//dir-pagination-controls/ul/li[4]/a"));} // Next page arrow btn
 
 
-    // Method. Will need the btn above in TC
+    // Method.
     public WebElement AssignPermission(String Username) throws InterruptedException {
 
             do {
@@ -59,11 +52,13 @@ public class UsersPage {
                 for (WebElement cell: allRows) {
 
                     if (cell.getText().contains(Username)) {
+                        System.out.println(Username);
                         return cell;
                     }
                 }
                 NextPageBtn().click();
                 Thread.sleep(5000);
+
             } while (NextPageBtn().isEnabled());
         return null;
     }
@@ -73,10 +68,10 @@ public class UsersPage {
 
         do {
             List<WebElement> rows= driver.findElements(By.tagName("tr"));
-             for (WebElement cells : rows) {
+             for (WebElement cell : rows) {
 
-                if (cells.getText().contains(Username)) {
-                    return cells;
+                if (cell.getText().contains(Username)) {
+                    return cell;
                 }
             }
             NextPageBtn().click();
@@ -84,7 +79,7 @@ public class UsersPage {
         }
         while (NextPageBtn().isEnabled()) ;
 
-        return null;
+         return AssignPermission(Username);
     }// resend invitation to the same user
 
 
@@ -93,10 +88,10 @@ public class UsersPage {
 
         do {
             List<WebElement> rows = driver.findElements(By.tagName("tr"));
-            for (WebElement cells: rows){
+            for (WebElement cell: rows){
 
-                if (cells.getText().contains(Username)){
-                    return cells;
+                if (cell.getText().contains(Username)){
+                    return cell;
 
                 }
             }

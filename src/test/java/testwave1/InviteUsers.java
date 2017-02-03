@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by shilp on 12/16/2016.
  */
-public class inviteUsers {
+public class InviteUsers {
     WebDriver driver;
     Faker faker;
     LoginPage loginPage;
@@ -48,7 +48,7 @@ public class inviteUsers {
     public void inviteUser() throws InterruptedException {
         driver.get("http://www.testwave.qabidder.net");
 
-        loginPage.Login("mask@mailinator.com", "123456");
+        loginPage.Login("leela@mailinator.com", "123456");
         Thread.sleep(5000);
         naveBarPage.Users().click(); // navebar users btn
         usersPage.InviteUserBtn().click(); // invite user btn

@@ -12,7 +12,7 @@ import pages.NaveBarPage;
 /**
  * Created by shilp on 1/5/2017.
  */
-public class deleteEntities {
+public class DeleteEntities {
     WebDriver driver;
     LoginPage loginPage;
     NaveBarPage naveBarPage;
@@ -33,7 +33,7 @@ public class deleteEntities {
     public void DeleteAllEntities() throws InterruptedException {
         driver.get("http://www.testwave.qabidder.net");
         Thread.sleep(3000);
-        loginPage.Login("mask@mailinator.com","123456");
+        loginPage.Login("leela@mailinator.com","123456");
         Thread.sleep(5000);
 
         naveBarPage.Entities().click();
