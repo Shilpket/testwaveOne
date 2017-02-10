@@ -1,6 +1,7 @@
 package testwave1;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -35,17 +36,22 @@ public class Registration {
 
     @Test (priority = 1)
     public void registerUser()throws InterruptedException{
+        Thread.sleep(3000);
         loginPage.register().click();
+        Thread.sleep(3000);
         regPage.registerName().sendKeys(faker.name().firstName());
+        Thread.sleep(2000);
         regPage.registerEmail().sendKeys(faker.internet().emailAddress());
         regPage.registerPassword().sendKeys("123456");
         regPage.registerRetypePassword().sendKeys("123456");
+        Thread.sleep(3000);
         regPage.registerBtn().click();
 
     }
 
-    @Test (priority =2, enabled = false)
-    public void registerCompany(){
+    @Test (priority =2, enabled = true)
+    public void registerCompany() throws InterruptedException {
+        Thread.sleep(3000);
         regPage.companyName().sendKeys(faker.company().name());
         regPage.contactEmail().sendKeys(faker.internet().emailAddress());
         regPage.contactPhone().sendKeys(faker.phoneNumber().phoneNumber());
@@ -53,6 +59,7 @@ public class Registration {
         new Select(regPage.country()).selectByVisibleText("United States");
         regPage.city().sendKeys(faker.address().city());
         new Select(regPage.city()).selectByVisibleText("California");
+        Thread.sleep(3000);
         regPage.finishRegistration().click();
 
     }

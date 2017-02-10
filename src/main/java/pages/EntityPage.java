@@ -36,7 +36,7 @@ public class EntityPage {
 
     /*Below btn had ngdialog no which is different on each row. ngdialog1, ngdialog2 on each row
      So to dismiss an element not found error, we add text and mention it in the method "+text+"*/
-    public WebElement RUDoneBtn(int i){return driver.findElement(By.xpath("//*[@class=\"btn btn-primary\"]/div[2]/div/button"));}
+    public WebElement RUDoneBtn(){return driver.findElement(By.xpath("//*[@class=\"btn btn-primary\"]/div[2]/div/button"));}
 
     public WebElement FinishBtn(){return driver.findElement(By.xpath("//section/div/div/div[2]/button[2]"));}
     public WebElement InviteAdminEmail(){return driver.findElement(By.xpath("//section//div[3]/form//input"));}

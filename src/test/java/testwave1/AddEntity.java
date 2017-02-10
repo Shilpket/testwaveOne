@@ -32,7 +32,7 @@ public class AddEntity {
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("http://testwave.qabidder.net");
-        loginPage.Login("mask@mailinator.com", "123456");
+        loginPage.Login("leela@mailinator.com", "123456");
 
     }
     @Test
@@ -57,7 +57,7 @@ public class AddEntity {
         entityPage.InviteRUField().sendKeys(faker.internet().emailAddress());
         entityPage.NextStepBtn().click();
         Thread.sleep(3000);
-        entityPage.RUDoneBtn(+1).click();
+        entityPage.RUDoneBtn().click();
         Thread.sleep(3000);
         entityPage.NextStepBtn().click();
         Thread.sleep(3000);
